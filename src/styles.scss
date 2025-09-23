@@ -1,0 +1,169 @@
+@use "@angular/material" as mat;
+@use "./styles/_theme-colors.scss" as theme-colors;
+
+@include mat.all-component-themes(theme-colors.$theme);
+
+
+html, body {
+  margin: 0;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+main {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  flex: auto;
+  height: 100%;
+}
+
+.mat-form-field-readonly {
+  .mdc-text-field--outlined:not(.mdc-text-field--disabled) {
+    .mdc-notched-outline__notch {
+      border: none;
+      border-bottom-style: dotted;
+      border-bottom-width: thin;
+      border-bottom-color: lightgray !important;
+      font-style: italic
+    }
+
+    .mdc-notched-outline__leading {
+      border-style: dotted;
+      border-color: lightgray !important;
+      border-right-style: none;
+    }
+
+    .mdc-notched-outline__trailing {
+      border-style: dotted;
+      border-color: lightgray !important;
+      border-left-style: none;
+    }
+  }
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+}
+.toolbar-title {
+  flex: 1 1 auto;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.footer {
+  flex: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: mat.get-theme-color(theme-colors.$theme, primary, 50);
+  color: mat.get-theme-color(theme-colors.$theme, primary, 100);
+}
+
+.background-primary {
+  background-color: mat.get-theme-color(theme-colors.$theme, primary, 50);
+  color: mat.get-theme-color(theme-colors.$theme, primary, 100);
+}
+
+.footer a {
+  color: mat.get-theme-color(theme-colors.$theme, on-primary);
+}
+
+.content {
+  padding-top: 62px;
+  padding-bottom: 64px;
+  padding-left: 15px;
+  padding-right: 15px;
+  overflow-y: auto;
+}
+
+.footer-content {
+  margin: 0;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: safe center;
+  background-color: mat.get-theme-color(theme-colors.$theme, primary, 50);
+  color: mat.get-theme-color(theme-colors.$theme, primary, 100);
+}
+
+.table-column-filter {
+  display: flex;
+  /* position: fixed;*/
+
+  .filter-button {
+    margin: 1rem 0;
+  }
+}
+
+.table-column-filter-menu {
+  position: relative;
+  top: 50px;
+  right: 0px;
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 4px;
+  z-index: 999;
+}
+
+.mat-mdc-row:hover {
+  background-color: #87CEEB !important;
+}
+
+.mat-mdc-row.selected-row {
+  background-color: #87CEEB !important;
+}
+
+mat-label {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.mdc-text-field:not(.mdc-text-field--disabled) {
+  .mdc-floating-label {
+    .mat-mdc-form-field-required-marker {
+      color: red;
+      font-size: 1.5rem;
+    }
+  }
+}
+
+.success-snackbar {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.readonly-label {
+  color: var(--mat-sys-on-surface);
+  font-style: italic;
+}
+
+.text-neutral {
+  color: var(--mat-sys-neutral);
+}
+
+.text-primary {
+  color: mat.get-theme-color(theme-colors.$theme, primary, 50);
+}
+
+.error-flat-button:not([disabled]) {
+  --mdc-filled-button-container-color: var(--mat-sys-error);
+  --mdc-filled-button-label-text-color: var( --mat-sys-on-error);
+}
