@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule, MatToolbarModule, RouterOutlet, MatSidenavModule],
 })
 export class App implements OnInit {
-  title = 'QRCode Redirect Service';
+  title = 'DaaS QR Code';
   currentYear: number = new Date().getFullYear();
   isLoginPage: boolean = false;
 

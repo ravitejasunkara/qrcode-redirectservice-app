@@ -1,21 +1,26 @@
 .dashboard-container {
   display: flex;
   flex-direction: column;
+  padding-top: 64px; /* Space for the main fixed header */
+  padding-bottom: 64px; /* Space for the main fixed footer */
 }
 
 .dashboard-toolbar {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.87); // Default text color for light backgrounds
   display: flex;
   align-items: center;
   padding: 0 16px;
 
-  .logo {
-    height: 30px;
-    margin-right: 24px;
-  }
+  // Target all mat-button elements directly inside the toolbar
+  .mdc-button.mat-mdc-button {
+    margin: 0 8px;
+    background-color: #eeeeee; // Grey background
+    color: black; // Black text
 
-  .nav-buttons {
-    button {
-      margin: 0 8px;
+    // Ensure the icon inside the button is also black
+    .mat-icon {
+      color: black;
     }
   }
 
@@ -30,21 +35,44 @@
     .mat-mdc-form-field-subscript-wrapper {
       display: none;
     }
-    .mat-mdc-form-field-flex {
-      padding-top: 12px;
-      height: 48px;
-    }
+
     .mat-mdc-text-field-wrapper {
-      background-color: white;
+      background-color: #f0f2f5; // A light grey for the search input background
       border-radius: 4px;
     }
   }
 }
 
+// .records-card {
+//   // The toolbar provides the top spacing
+//   margin: 20px 30px 0;
+// }
+
+.records-card mat-card-header {
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Consolidate .records-card styling here
 .records-card {
-  margin: 20px;
+  margin: 0 30px; // 0 top/bottom margin, 30px left/right margin
+  width: auto; // Allow the card to take full width minus horizontal margins
+  max-width: none; // Remove max-width constraint if it's not intended to be fixed
+  padding: 16px; // Keep internal padding
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Keep shadow
 }
 
 table {
-  width: 100%;
+  width: 20%; // Table width reduced to 20% of its container (mat-card-content)
+  margin-left: auto; // Center the table
+  margin-right: auto; // Center the table
+}
+
+// Optional: If you want to center the card vertically as well
+.container {
+  display: flex;
+  justify-content: center;
+  // align-items: center; // This was causing vertical centering
+  // min-height: 100vh; // This was making the container take full height
+  padding-top: 20px; // Space above the card, as previously set
 }
