@@ -2,12 +2,12 @@
   <mat-toolbar class="dashboard-toolbar mat-elevation-z2">
     <div class="nav-buttons">
       <button mat-button [matMenuTriggerFor]="assetsMenu">Assets <mat-icon>expand_more</mat-icon></button>
-      <mat-menu #assetsMenu="matMenu">
-        <button mat-menu-item>Upload File</button>
+      <mat-menu #assetsMenu="matMenu" xPosition="after">
+        <button mat-menu-item routerLink="/upload-file">Upload File</button>
       </mat-menu>
 
       <button mat-button>Categories</button>
-      <button mat-button>Activity</button>
+      <button mat-button routerLink="/activity">Activity</button>
     </div>
 
     <div class="spacer"></div>
@@ -22,7 +22,7 @@
 
     <div class="spacer"></div>
 
-    <button mat-button [matMenuTriggerFor]="moreMenu">More <mat-icon>expand_more</mat-icon></button>
+    <button mat-button [matMenuTriggerFor]="moreMenu" class="more-button">More <mat-icon>expand_more</mat-icon></button>
     <mat-menu #moreMenu="matMenu">
       <!-- <button mat-menu-item>Assets</button> -->
       <button mat-menu-item>Advanced Search</button>
