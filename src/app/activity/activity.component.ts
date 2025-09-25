@@ -31,15 +31,11 @@ export class ActivityComponent implements OnInit {
   }
 
   fetchStats(): void {
-    debugger;
     this.isLoading = true;
     this.stats$ = this.activityService.getActivityStats().pipe(
       // Use the finalize operator to ensure isLoading is set to false
       // whether the observable completes or errors.
-      finalize(() => {
-        this.isLoading = false;
-        debugger;
-      })
+      finalize(() => (this.isLoading = false))
     );
   }
 
