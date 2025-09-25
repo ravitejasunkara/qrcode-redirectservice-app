@@ -8,12 +8,17 @@
     
     <mat-toolbar class="footer" *ngIf="!isLoginPage">
       <div class="footer-content">
-        <span>
-          © Ecolab {{this.currentYear}}
-        </span>
-        <span>
-          &nbsp;|&nbsp;<a href="#">Privacy Policy</a>&nbsp;|&nbsp;<a href="#">Terms of Service</a>
-        </span>
+        <div class="footer-links">
+          <span>
+            © Ecolab {{this.currentYear}}
+          </span>
+          <span>
+            &nbsp;|&nbsp;<a href="#">Privacy Policy</a>&nbsp;|&nbsp;<a href="#">Terms of Service</a>
+          </span>
+        </div>
+        <div class="footer-logo">
+          <img src="assets/ecolab-logo-white-svg.svg" alt="Ecolab Logo" />
+        </div>
       </div>
     </mat-toolbar>
   </mat-sidenav-content>

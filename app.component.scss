@@ -1,0 +1,46 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.content {
+  padding: 20px;
+}
+
+.dashboard-toolbar {
+  background-color: white;
+  color: rgba(0, 0, 0, 0.87); // Default text color for light backgrounds
+  display: flex;
+  align-items: center;
+
+  .mdc-button.mat-mdc-button {
+    margin: 0 8px;
+    background-color: #eeeeee; // Grey background
+    color: black; // Black text
+
+    .mat-icon {
+      color: black;
+    }
+  }
+
+  .search-bar {
+    width: 400px;
+    margin: 0 16px;
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      background-color: #f0f2f5; // A light grey for the search input background
+      border-radius: 4px;
+    }
+  }
+}
+
+// Styles for the smaller assets menu
+::ng-deep .assets-menu .mat-mdc-menu-item {
+  min-height: 20px; // Default is 48px
+}
+
+::ng-deep .assets-menu .mdc-list-item__primary-text {
+  font-size: 8px; // Default is 16px
+}

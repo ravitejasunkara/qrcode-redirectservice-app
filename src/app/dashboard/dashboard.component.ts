@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -293,13 +293,31 @@ const ELEMENT_DATA: AssetRecord[] = [
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [MatCardModule, MatToolbarModule, MatIconModule, MatButtonModule, MatMenuModule, MatFormFieldModule, MatInputModule, MatTableModule, MatPaginatorModule],
+  imports: [
+    MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements AfterViewInit {
+export class DashboardComponent implements AfterViewInit, OnInit {
+  welcomeMessage: string = '';
+
   constructor(private router: Router) {
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+  }
+
+  ngOnInit(): void {
+    const navigation = this.router.getCurrentNavigation();
+    const username = navigation?.extras.state?.['username'];
+    const displayName = username ? username.charAt(0).toUpperCase() + username.slice(1) : 'User';
+    this.welcomeMessage = `Hi ${displayName}, Welcome to our DaaS QR Code.`;
   }
 
   displayedColumns: string[] = [
@@ -324,7 +342,7 @@ export class DashboardComponent implements AfterViewInit {
   }
   
   onSearch(): void {
-    this.router.navigate(['/search-results']);
+    // Implement search logic or navigation
   }
 
 }

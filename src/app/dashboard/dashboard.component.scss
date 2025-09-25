@@ -10,7 +10,7 @@
   color: rgba(0, 0, 0, 0.87); // Default text color for light backgrounds
   display: flex;
   align-items: center;
-  padding: 0 16px;
+  //padding: 0 16px;
 
   // Target all mat-button elements directly inside the toolbar
   .mdc-button.mat-mdc-button {
@@ -53,12 +53,19 @@
   justify-content: space-between;
 }
 
+.welcome-message {
+  text-align: center;
+  font-weight: 400;
+  margin: 16px 0;
+  width: 100%;
+}
+
 // Consolidate .records-card styling here
 .records-card {
   margin: 0 30px; // 0 top/bottom margin, 30px left/right margin
   width: auto; // Allow the card to take full width minus horizontal margins
   max-width: none; // Remove max-width constraint if it's not intended to be fixed
-  padding: 16px; // Keep internal padding
+ // padding: 16px; // Keep internal padding
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); // Keep shadow
 }
 
@@ -71,8 +78,18 @@ table {
 // Optional: If you want to center the card vertically as well
 .container {
   display: flex;
-  justify-content: center;
+  flex-direction: column; // Stack items vertically
+  align-items: center; // Center items horizontally
   // align-items: center; // This was causing vertical centering
   // min-height: 100vh; // This was making the container take full height
   padding-top: 20px; // Space above the card, as previously set
+}
+
+// Styles for the smaller assets menu
+::ng-deep .assets-menu .mat-mdc-menu-item {
+  min-height: 20px; // Default is 48px
+}
+
+::ng-deep .assets-menu .mdc-list-item__primary-text {
+  font-size: 8px; // Default is 16px
 }

@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const { username, password } = this.loginForm.value;
       if (username === 'admin' && password === 'password') {
-        this.router.navigate(['/dashboard']);
+        // Pass username to dashboard via navigation state
+        this.router.navigate(['/dashboard'], { state: { username: username } });
       } else {
         this.loginError = 'Invalid username or password.';
       }
@@ -48,6 +49,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSsoLogin(): void {
-    this.router.navigate(['/dashboard']);
+    // For demonstration, we'll use a hardcoded SSO user email
+    const ssoUser = 'sso.user@ecolab.com';
+    this.router.navigate(['/dashboard'], { state: { username: ssoUser.split('@')[0] } });
   }
 }

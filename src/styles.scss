@@ -68,7 +68,7 @@ main {
   left: 0;
   width: 100%;
   z-index: 100;
-  background-color: mat.get-theme-color(theme-colors.$theme, primary, 50);
+  background-color: mat.get-theme-color(theme-colors.$theme, primary);
   color: mat.get-theme-color(theme-colors.$theme, primary, 100);
   border-top: 1px solid rgba(0, 0, 0, 0.12); // Add a top border for separation
 }
@@ -85,15 +85,15 @@ main {
 .content {
   padding-top: 62px;
   padding-bottom: 64px;
-  padding-left: 15px;
-  padding-right: 15px;
+  // padding-left: 15px;
+  // padding-right: 15px;
   overflow-y: auto;
 }
 
 .footer-content {
   margin: 0;
-  padding-left: 1.25rem;
-  padding-right: 1.25rem;
+  padding-left: 0;
+  padding-right: 0;
   padding-top: 1.25rem;
   padding-bottom: 1.25rem;
   width: 100%;
@@ -103,6 +103,15 @@ main {
   align-items: safe center;
   background-color: mat.get-theme-color(theme-colors.$theme, primary, 50);
   color: mat.get-theme-color(theme-colors.$theme, primary, 100);
+}
+
+.footer-logo img {
+  height: 16px;
+  width: auto;
+}
+
+.footer-links {
+  flex-grow: 1;
 }
 
 .table-column-filter {
