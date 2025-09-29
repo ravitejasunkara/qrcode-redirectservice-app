@@ -4,12 +4,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { UploadFileComponent } from './upload-file/upload-file.component';
 import { ActivityComponent } from './activity/activity.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'search-results', component: SearchResultsComponent },
   { path: 'upload-file', component: UploadFileComponent },
+  { path: 'categories', component: CategoriesComponent },
   { path: 'activity', component: ActivityComponent },
 
   { path: '', redirectTo: '/login', pathMatch: 'full' },

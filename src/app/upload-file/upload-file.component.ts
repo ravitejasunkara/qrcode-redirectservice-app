@@ -5,6 +5,9 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { Router } from '@angular/router';
 import * as XLSX from 'xlsx';
 
 export interface UrlRecord {
@@ -21,6 +24,8 @@ export interface UrlRecord {
     MatCardModule,
     MatTableModule,
     MatPaginatorModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatButtonModule,
     MatIconModule,
   ],
@@ -31,10 +36,21 @@ export class UploadFileComponent implements AfterViewInit {
   displayedColumns: string[] = ['S.No', 'Short URL', 'Destination URL'];
   dataSource = new MatTableDataSource<UrlRecord>();
   recordCount = 0;
+  filterValue: string = '';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  constructor(private router: Router) {
+    // configure filter predicate to search both columns
+    this.dataSource.filterPredicate = (data: UrlRecord, filter: string) => {
+      const f = filter.trim().toLowerCase();
+      const shortUrl = (data['Short URL'] || '').toLowerCase();
+      const dest = (data['Destination URL'] || '').toLowerCase();
+      return shortUrl.indexOf(f) >= 0 || dest.indexOf(f) >= 0;
+    };
+  }
 
   ngAfterViewInit() {
+    // attach paginator after view init
     this.dataSource.paginator = this.paginator;
   }
 
@@ -61,8 +77,26 @@ export class UploadFileComponent implements AfterViewInit {
 
       this.dataSource.data = formattedData;
       this.recordCount = formattedData.length;
-      this.dataSource.paginator = this.paginator; // Re-assign paginator after data change
+      // Re-assign the paginator to the data source to ensure it works after new data is loaded.
+      // ensure paginator is attached after data assignment and view updates
+      setTimeout(() => {
+        this.dataSource.paginator = this.paginator;
+        if (this.paginator) this.paginator.firstPage();
+      });
     };
     reader.readAsBinaryString(target.files[0]);
+  }
+
+  applyFilter(filter: string) {
+    this.filterValue = filter;
+    this.dataSource.filter = (filter || '').trim().toLowerCase();
+    // reset paginator to first page when filtering
+    if (this.paginator) {
+      this.paginator.firstPage();
+    }
+  }
+
+  back() {
+    this.router.navigate(['/dashboard']);
   }
 }
