@@ -9,6 +9,17 @@
   margin: 0 auto;
 }
 
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.back-button {
+  margin-left: 8px;
+}
+
 .upload-actions {
   display: flex;
   align-items: center;
@@ -24,4 +35,18 @@
 
 .table-container {
   width: 100%;
+}
+
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.paginator-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

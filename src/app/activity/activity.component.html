@@ -1,43 +1,46 @@
 <div class="activity-container">
   <div class="header">
-    <h1>Activity Dashboard</h1>
-    <button mat-icon-button (click)="onRefresh()" aria-label="Refresh stats">
-      <mat-icon>refresh</mat-icon>
-    </button>
+    <div class="header-left">
+      <button mat-icon-button (click)="back()" aria-label="Back to dashboard">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+    </div>
+
+    <!-- <div class="header-center">
+      <h1>Activity Dashboard</h1>
+    </div> -->
+
+    <div class="header-right">
+      <button mat-icon-button (click)="onRefresh()" aria-label="Refresh stats">
+        <mat-icon>refresh</mat-icon>
+      </button>
+    </div>
   </div>
 
-  <ng-container *ngIf="isLoading; else statsContent">
-    <div class="spinner-container">
-      <mat-spinner></mat-spinner>
+  <ng-container *ngIf="stats$ | async as stats; else noStats">
+    <div class="stats-cards">
+      <mat-card class="stat-card uploaded">
+        <mat-card-header>
+          <div mat-card-avatar class="card-icon">📤</div>
+          <mat-card-title>Records Uploaded</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="stat-number">{{ stats.uploaded }}</p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="stat-card deleted">
+        <mat-card-header>
+          <div mat-card-avatar class="card-icon">🗑️</div>
+          <mat-card-title>Records Deleted</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p class="stat-number">{{ stats.deleted }}</p>
+        </mat-card-content>
+      </mat-card>
     </div>
   </ng-container>
-
-  <ng-template #statsContent>
-    <ng-container *ngIf="stats$ | async as stats; else noStats">
-      <div class="stats-cards">
-        <mat-card class="stat-card uploaded">
-          <mat-card-header>
-            <div mat-card-avatar class="card-icon">📤</div>
-            <mat-card-title>Records Uploaded</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p class="stat-number">{{ stats.uploaded }}</p>
-          </mat-card-content>
-        </mat-card>
-
-        <mat-card class="stat-card deleted">
-          <mat-card-header>
-            <div mat-card-avatar class="card-icon">🗑️</div>
-            <mat-card-title>Records Deleted</mat-card-title>
-          </mat-card-header>
-          <mat-card-content>
-            <p class="stat-number">{{ stats.deleted }}</p>
-          </mat-card-content>
-        </mat-card>
-      </div>
-    </ng-container>
-    <ng-template #noStats>
-      <p>No activity stats available.</p>
-    </ng-template>
+  <ng-template #noStats>
+    <p class="no-stats">No activity stats available.</p>
   </ng-template>
 </div>

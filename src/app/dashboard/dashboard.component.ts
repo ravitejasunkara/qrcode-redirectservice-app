@@ -7,7 +7,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 
 // export interface AssetRecord {
@@ -304,7 +304,8 @@ const ELEMENT_DATA: AssetRecord[] = [
     MatFormFieldModule,
     MatInputModule,
     MatTableModule,
-    MatPaginatorModule],
+    MatPaginatorModule,
+    RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
@@ -315,6 +316,22 @@ export class DashboardComponent implements AfterViewInit, OnInit {
 
   constructor(private router: Router) {
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    // filter predicate to search across aliasId, appUrl, imageUrl, category
+    this.dataSource.filterPredicate = (data: AssetRecord, filter: string) => {
+      const f = (filter || '').trim().toLowerCase();
+      return (
+        (data.aliasId || '').toLowerCase().includes(f) ||
+        (data.appUrl || '').toLowerCase().includes(f) ||
+        (data.imageUrl || '').toLowerCase().includes(f) ||
+        (data.category || '').toLowerCase().includes(f)
+      );
+    };
+  }
+
+  // navigate programmatically as a fallback for menu/link issues
+  navigate(path: string) {
+    // Use router.navigate to ensure SPA navigation
+    this.router.navigate([path]);
   }
 
   ngOnInit(): void {
@@ -347,6 +364,11 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   
   onSearch(): void {
     // Implement search logic or navigation
+  }
+
+  applyFilter(value: string) {
+    this.dataSource.filter = (value || '').trim().toLowerCase();
+    if (this.paginator) this.paginator.firstPage();
   }
 
 }

@@ -1,0 +1,1 @@
+- [x] Fix routerLink syntax in dashboard.component.html for upload-file and activity buttons
