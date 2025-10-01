@@ -43,6 +43,8 @@ export interface AssetRecord {
 }
 
 
+
+
 const ELEMENT_DATA: AssetRecord[] = [
   {
     id: 1,
@@ -308,6 +310,8 @@ const ELEMENT_DATA: AssetRecord[] = [
 })
 export class DashboardComponent implements AfterViewInit, OnInit {
   welcomeMessage: string = '';
+  currentYear = new Date().getFullYear();
+  
 
   constructor(private router: Router) {
     this.dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -346,3 +350,4 @@ export class DashboardComponent implements AfterViewInit, OnInit {
   }
 
 }
+
